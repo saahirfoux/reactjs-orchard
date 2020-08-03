@@ -13,11 +13,24 @@ export const typeDefs = gql`
         rating: Int!
     }
 
+    input CreateListing {
+        id: ID
+        title: String!
+        image: String!
+        address: String!
+        price: Int!
+        numOfGuests: Int!
+        numOfBeds: Int!
+        numOfBaths: Int!
+        rating: Int!
+    }
+
     type Query {
         listings: [Listing!]!
     }
 
     type Mutation {
         deleteListing(id: ID!): Listing!
+        createListing(input: CreateListing): Listing
     }
 `;
