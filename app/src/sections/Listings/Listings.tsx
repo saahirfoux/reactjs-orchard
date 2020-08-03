@@ -41,16 +41,24 @@ const DELETE_LISTING = `
 `;
 
 interface Props {
-    title: string;
+  title: string;
 }
 
 export const Listings = ({ title }: Props) => {
-  const { data, loading, error, refetch } = useQuery<ListingsData>(LISTINGS);
+  const { data, loading, error, refetch } = useQuery<
+    ListingsData
+  >(LISTINGS);
 
   const [
     deleteListing,
-    { loading: deleteListingLoading, error: deleteListingError }
-  ] = useMutation<DeleteListingData, DeleteListingVariables>(DELETE_LISTING);
+    {
+      loading: deleteListingLoading,
+      error: deleteListingError
+    }
+  ] = useMutation<
+    DeleteListingData,
+    DeleteListingVariables
+  >(DELETE_LISTING);
 
   const handleDeleteListing = async (id: string) => {
     await deleteListing({ id });
@@ -65,7 +73,11 @@ export const Listings = ({ title }: Props) => {
         return (
           <li key={listing.id}>
             {listing.title}{" "}
-            <button onClick={() => handleDeleteListing(listing.id)}>
+            <button
+              onClick={() =>
+                handleDeleteListing(listing.id)
+              }
+            >
               Delete
             </button>
           </li>
@@ -79,7 +91,12 @@ export const Listings = ({ title }: Props) => {
   }
 
   if (error) {
-    return <h2>Uh oh! Something went wrong - please try again later :(</h2>;
+    return (
+      <h2>
+        Uh oh! Something went wrong - please try again later
+        :(
+      </h2>
+    );
   }
 
   const deleteListingLoadingMessage = deleteListingLoading ? (
@@ -88,7 +105,8 @@ export const Listings = ({ title }: Props) => {
 
   const deleteListingErrorMessage = deleteListingError ? (
     <h4>
-      Uh oh! Something went wrong with deleting :(. Please try again soon.
+      Uh oh! Something went wrong with deleting :(. Please
+      try again soon.
     </h4>
   ) : null;
 
