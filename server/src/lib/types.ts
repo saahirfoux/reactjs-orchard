@@ -12,6 +12,21 @@ export interface Listing {
   rating: number;
 }
 
+export interface AddListingInput {
+  title: string;
+  image: string;
+  address: string;
+  price: number;
+  numOfGuests: number;
+  numOfBeds: number;
+  numOfBaths: number;
+  rating: number;
+}
+
+export interface AddListingArgs {
+  input: AddListingInput;
+}
+
 export interface Database {
   listings: Collection<Listing>;
 }
